@@ -9,10 +9,10 @@
 	const enterButton = document.getElementById('get-location');
 	const userInput = document.getElementById('weather-search');
 
-	let address;
-	let temperature;
-	let feelsLike;
-	let description;
+	const address = document.getElementById('address');
+	const temperature = document.getElementById('temp');
+	const feelsLike = document.getElementById('feels-like');
+	const description = document.getElementById('description');
 
 	async function getWeather() {
 		const response = await fetch(
@@ -21,14 +21,10 @@
 		);
 		const weatherData = await response.json();
 
-		address = weatherData.address;
-		temperature = weatherData.currentConditions.temp;
-		feelsLike = weatherData.currentConditions.feelslike;
-		description = weatherData.description;
-
-		console.log(address);
-		console.log(`Temp: ${temperature}F, Feels Like: ${feelsLike}F`);
-		console.log(description);
+		address.textContent = weatherData.address;
+		temperature.textContent = weatherData.currentConditions.temp;
+		feelsLike.textContent = weatherData.currentConditions.feelslike;
+		description.textContent = weatherData.description;
 	}
 
 	const getUserLocation = () => {
