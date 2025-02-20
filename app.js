@@ -15,16 +15,20 @@
 	const description = document.getElementById('description');
 
 	async function getWeather() {
-		const response = await fetch(
-			`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${userInput.value}?key=RSFS74567369DAKB7FHJ8MZ7V`,
-			{ mode: 'cors' }
-		);
-		const weatherData = await response.json();
+		try {
+			const response = await fetch(
+				`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${userInput.value}?key=RSFS74567369DAKB7FHJ8MZ7V`,
+				{ mode: 'cors' }
+			);
+			const weatherData = await response.json();
 
-		address.textContent = weatherData.address;
-		temperature.textContent = weatherData.currentConditions.temp;
-		feelsLike.textContent = weatherData.currentConditions.feelslike;
-		description.textContent = weatherData.description;
+			address.textContent = weatherData.address;
+			temperature.textContent = weatherData.currentConditions.temp;
+			feelsLike.textContent = weatherData.currentConditions.feelslike;
+			description.textContent = weatherData.description;
+		} catch (error) {
+			alert(`Location doesn't exist`);
+		}
 	}
 
 	const getUserLocation = () => {
