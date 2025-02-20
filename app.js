@@ -13,6 +13,9 @@
 	const temperature = document.getElementById('temp');
 	const feelsLike = document.getElementById('feels-like');
 	const description = document.getElementById('description');
+	const nowShowing = document.querySelector('.now-showing');
+
+	let metricChange = false;
 
 	async function getWeather() {
 		try {
@@ -22,9 +25,19 @@
 			);
 			const weatherData = await response.json();
 
+			if (metricChange) {
+				let tempC = parseFloat(weatherData.currentConditions.temp);
+				let feelsLikeC = parseFloat(weatherData.currentConditions.feelslike);
+
+				temperature.textContent = `${Math.floor((5 / 9) * (tempC - 32))} \xB0C`;
+				feelsLike.textContent = `${Math.floor(
+					(5 / 9) * (feelsLikeC - 32)
+				)} \xB0C`;
+			} else {
+				temperature.textContent = `${weatherData.currentConditions.temp} \xB0F`;
+				feelsLike.textContent = `${weatherData.currentConditions.feelslike} \xB0F`;
+			}
 			address.textContent = weatherData.address;
-			temperature.textContent = weatherData.currentConditions.temp;
-			feelsLike.textContent = weatherData.currentConditions.feelslike;
 			description.textContent = weatherData.description;
 		} catch (error) {
 			alert(`Location doesn't exist`);
@@ -35,5 +48,15 @@
 		getWeather();
 	};
 
+	const changeMetric = () => {
+		metricChange = !metricChange;
+		if (metricChange) {
+			nowShowing.textContent = 'Celcius';
+		} else {
+			nowShowing.textContent = 'Fahrenheit';
+		}
+	};
+
 	enterButton.addEventListener('click', getUserLocation);
+	nowShowing.addEventListener('click', changeMetric);
 })();
