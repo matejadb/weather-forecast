@@ -8,6 +8,7 @@
 (function weatherApp() {
 	const enterButton = document.getElementById('get-location');
 	const userInput = document.getElementById('weather-search');
+	const weatherData = document.querySelector('.weather-data');
 
 	const address = document.getElementById('address');
 	const temperature = document.getElementById('temp');
@@ -58,6 +59,8 @@
 		} else {
 			getWeatherFahrenheit();
 		}
+
+		weatherData.style.display = 'flex';
 	};
 
 	const changeMetric = () => {
