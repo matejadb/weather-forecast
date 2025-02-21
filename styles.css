@@ -1,0 +1,30 @@
+/* 
+Background: #1E1E1E (Dark Gray)
+Text: #E0E0E0 (Light Gray)
+Input & Buttons: #424242 (Medium Gray)
+Button Hover: #616161 (Lighter Gray)
+Weather Data Box: #333333 (Near Black)
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #1e1e1e;
+	color: #e0e0e0;
+}
+
+input {
+	color: #424242;
+}
+
+.user-input {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	height: 70px;
+}

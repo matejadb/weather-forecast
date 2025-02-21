@@ -29,9 +29,11 @@
 				let tempC = parseFloat(weatherData.currentConditions.temp);
 				let feelsLikeC = parseFloat(weatherData.currentConditions.feelslike);
 
-				temperature.textContent = `${Math.floor((5 / 9) * (tempC - 32))} \xB0C`;
+				temperature.textContent = `${Math.round(
+					((5 / 9) * (tempC - 32) * 10) / 10
+				)} \xB0C`;
 				feelsLike.textContent = `${Math.floor(
-					(5 / 9) * (feelsLikeC - 32)
+					((5 / 9) * (feelsLikeC - 32) * 10) / 10
 				)} \xB0C`;
 			} else {
 				temperature.textContent = `${weatherData.currentConditions.temp} \xB0F`;
@@ -52,8 +54,26 @@
 		metricChange = !metricChange;
 		if (metricChange) {
 			nowShowing.textContent = 'Celcius';
+			let tempC = parseFloat(temperature.textContent);
+			let feelsLikeC = parseFloat(feelsLike.textContent);
+
+			temperature.textContent = `${Math.round(
+				((5 / 9) * (tempC - 32) * 10) / 10
+			)} \xB0C`;
+			feelsLike.textContent = `${Math.round(
+				((5 / 9) * (feelsLikeC - 32) * 10) / 10
+			)} \xB0C`;
 		} else {
 			nowShowing.textContent = 'Fahrenheit';
+			let tempF = parseFloat(temperature.textContent);
+			let feelsLikeF = parseFloat(feelsLike.textContent);
+
+			temperature.textContent = `${Math.round(
+				((9 / 5) * tempF + 32 * 10) / 10
+			)} \xB0F`;
+			feelsLike.textContent = `${Math.round(
+				((9 / 5) * feelsLikeF + 32 * 10) / 10
+			)} \xB0F`;
 		}
 	};
 
