@@ -64,10 +64,14 @@
 		getCelcius = !getCelcius;
 		if (getCelcius) {
 			nowShowing.textContent = `\xB0C	`;
-			getWeatherCelcius();
+			if (userInput.value) {
+				getWeatherCelcius();
+			}
 		} else {
 			nowShowing.textContent = `\xB0F`;
-			getWeatherFahrenheit();
+			if (userInput.value) {
+				getWeatherFahrenheit();
+			}
 		}
 	};
 
